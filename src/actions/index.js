@@ -38,8 +38,31 @@ export function authError(error) {
 	};
 }
 
+export function signupUser({ email, password }) {
+	return function(dispatch) {
+		// Submit email/password to server
+		axios.post(`${ROOT_URL}/signup`, { email, password })
+			.then(response => {
+				// if request is good
+				// - update state to indicate user is authenticated
+				dispatch({ type: AUTH_USER });
+				// - save the JWT token to localStorage
+				localStorage.setItem('token', response.data.token);
+				// - redirect to the route '/feature'
+				browserHistory.push('/feature');
+			})
+			.catch((response) => {
+				// if request is bad
+				// - show an error to the user
+				dispatch(authError(response.data.error));
+			});
+	}
+
+}
+
 export function signoutUser() {
 	localStorage.removeItem('token');
-	
+
 	return { type: UNAUTH_USER };
 }
+
