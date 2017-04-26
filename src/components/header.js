@@ -30,7 +30,7 @@ class Header extends Component {
 		return (
 			<nav className="navbar navbar-light">
 				<Link to="/" className="navbar-brand">
-				Redux Auth
+				Runners App
 				</Link>
 				<ul className="nav navbar-nav">
 					{this.renderLinks()}
