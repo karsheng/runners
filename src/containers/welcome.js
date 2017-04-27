@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/events'
+import * as actions from '../actions/events';
+import { Link } from 'react-router';
 
 class WelcomePage extends Component {
 	componentWillMount() {
@@ -16,17 +17,21 @@ class WelcomePage extends Component {
 		}
 		return events.map((event) => {
 			return(
-				<li key={event.id}>
-					{event.name}, {event.date}, {event.venue}
-				</li>
+				<Link to={"events/" + event.id} key={event.id}>
+				<div className="card card-block">
+					<h4 className="card-title">{event.name}</h4>
+					<p className="card-text">{event.date}</p>
+					<p>{event.venue}</p>
+				</div>
+				</Link>
 			);
 		});
 	}
 	render() {
 		return(
-			<ul>
+			<div className="event-list">
 			{this.renderEvents()}
-			</ul>
+			</div>
 		)
 	}
 }

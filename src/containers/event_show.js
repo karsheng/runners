@@ -14,6 +14,7 @@ class EventShow extends Component {
 		<div>
 			<p>{event.name}</p>
 			<p>{event.description}</p>
+			<button className="btn btn-primary">Register</button>
 		</div>
 		)
 	}
