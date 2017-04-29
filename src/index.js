@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { BrowserRouter, Route } from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
-import routes from './routes';
+import App from './app';
 import { AUTH_USER } from './actions/types';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -20,6 +20,8 @@ if (token) {
 
 ReactDOM.render(
   <Provider store={store}>
-  	<Router history={browserHistory} routes={routes} />
+  	<BrowserRouter>
+  		<App />
+  	</BrowserRouter>
   </Provider>
   , document.querySelector('.container'));

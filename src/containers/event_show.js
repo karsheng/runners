@@ -5,9 +5,9 @@ import * as actions from '../actions/events';
 
 class EventShow extends Component {
 
-	componentWillMount() {
-		const event_id = this.props.params.id;
-		this.props.fetchEvent(event_id);
+	componentDidMount() {
+    const { id } = this.props.match.params;
+		this.props.fetchEvent(id);
 	}
 	render() {
 		return(

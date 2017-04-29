@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/events';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class WelcomePage extends Component {
 	componentWillMount() {
@@ -17,7 +17,7 @@ class WelcomePage extends Component {
 		}
 		return events.map((event) => {
 			return(
-				<Link to={"events/" + event.id} key={event.id}>
+				<Link to={"/events/" + event.id} key={event.id}>
 				<div className="card card-block">
 					<h4 className="card-title">{event.name}</h4>
 					<p className="card-text">{event.date}</p>
