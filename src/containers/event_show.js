@@ -10,20 +10,22 @@ class EventShow extends Component {
 		this.props.fetchEvent(id);
 	}
 	render() {
-		return(
-		<div>
-			<p>{event.name}</p>
-			<p>{event.description}</p>
-			<button className="btn btn-primary">Register</button>
-		</div>
-		)
+		const { event } = this.props
+
+		return (
+			<div>
+				<p>{event.name}</p>
+				<p>{event.description}</p>
+				<button className="btn btn-primary">Register</button>
+			</div>
+		);
 	}
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
 	return {
-		event: state.event.event
-	}
+		event: state.events[ownProps.match.params.id]
+	};
 }
 
 export default connect(mapStateToProps, actions)(EventShow);

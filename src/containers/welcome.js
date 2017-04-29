@@ -2,20 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/events';
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
 
 class WelcomePage extends Component {
 	componentWillMount() {
 		this.props.fetchEvents();
 	}
 	renderEvents(){
-		const events = this.props.events;
-
-		if (!events) {
-			return(
-				<div>Loading...</div>
-			);
-		}
-		return events.map((event) => {
+		return _.map(this.props.events, (event) => {
 			return(
 				<Link to={"/events/" + event.id} key={event.id}>
 				<div className="card card-block">
@@ -39,7 +33,7 @@ class WelcomePage extends Component {
 
 function mapStateToProps(state) {
 	return {
-		events: state.event.events
+		events: state.events
 	};
 }
 
