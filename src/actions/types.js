@@ -5,3 +5,5 @@ export const FETCH_MESSAGE = 'fetch_message';
 
 export const FETCH_EVENTS = 'fetch_events';
 export const FETCH_EVENT = 'fetch_event';
+
+export const REGISTER_EVENT = 'register_event';
