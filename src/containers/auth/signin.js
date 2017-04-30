@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import * as actions from '../../actions'; 
+import { connect } from 'react-redux';
 
 class Signin extends Component {
+	renderField(field) {
+		return(
+			<div className="form-group">
+				<label>{field.label}</label>
+				<input
+					className="form-control"
+					type={field.type}
+					{...field.input}
+				/>
+			</div>
+		);
+	}
+
+
 	handleFormSubmit({ email, password }) {
 		// Need to do something to sign user in
 		this.props.signinUser({ email, password }, () => {
@@ -21,17 +36,22 @@ class Signin extends Component {
 	}
 
 	render() {
-		const { handleSubmit, fields: { email, password }} = this.props;
+		const { handleSubmit } = this.props;
+
 		return(
 			<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-				<fieldset className="form-group">
-					<label>Email:</label>
-					<input {...email} className="form-control" />
-				</fieldset>
-				<fieldset className="form-group">
-					<label>Password:</label>
-					<input {...password} type="password" className="form-control" />
-				</fieldset>
+				<Field
+					label="Email"
+					name="email"
+					type="text"
+					component={this.renderField}
+				/>
+				<Field
+					label="Password"
+					name="password"
+					type="password"
+					component={this.renderField}
+				/>
 				{this.renderAlert()}
 				<button action="submit" className="btn btn-primary">Sign in</button>
 			</form>
@@ -44,6 +64,10 @@ function mapStateToProps(state) {
 }
 
 export default reduxForm({
-	form: 'signin',
-	fields: ['email', 'password']
-}, mapStateToProps, actions)(Signin);
+	form: 'signin'
+})(
+	connect(mapStateToProps, actions)(Signin)
+);
+
+
+
