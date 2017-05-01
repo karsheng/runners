@@ -4,13 +4,14 @@ import {
 	UNAUTH_USER,
 	AUTH_ERROR,
 	FETCH_MESSAGE,
-	FETCH_USER_INFO
+	FETCH_USER_INFO,
+	FETCH_USER_EVENTS
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090'; 
 
 // TO DELETE - mimic fetch user info from database
-import { userInfo } from '../index';
+import { userInfo, userEvents } from '../index';
 
 export function signinUser({ email, password }, cb) {
 	// how we get access to the dispatch function
@@ -28,14 +29,20 @@ export function signinUser({ email, password }, cb) {
 					payload: userInfo
 				});
 
+				// update state with user events from database
+				dispatch({
+					type: FETCH_USER_EVENTS,
+					payload: userEvents
+				});
 				// - save the JWT token to localStorage
 				localStorage.setItem('token', response.data.token);
-
+				
 				cb();
 			})
-			.catch(() => {
+			.catch((err) => {
 				// if request is bad
 				// - show an error to the user
+				console.log(err);
 				dispatch(authError('Bad Sign In Info'));
 			});
 	}

@@ -5,6 +5,16 @@ import { Link } from 'react-router-dom';
 
 
 class EventShow extends Component {
+	renderRegisterButton() {
+		const { event, user_events } = this.props;
+		if (event.open && !user_events[event.id]) {
+			return(
+				<Link to={"/reg-event/" + event.id}>
+					<button className="btn btn-primary">Register</button>
+				</Link>
+			);
+		}
+	}
 	componentDidMount() {
     const { id } = this.props.match.params;
 		this.props.fetchEvent(id);
@@ -22,9 +32,7 @@ class EventShow extends Component {
 			<div>
 				<p>{event.name}</p>
 				<p>{event.description}</p>
-				<Link to={"/reg-event/" + event.id}>
-					<button className="btn btn-primary">Register</button>
-				</Link>
+				{this.renderRegisterButton()}
 			</div>
 		);
 	}
@@ -32,7 +40,8 @@ class EventShow extends Component {
 
 function mapStateToProps(state, ownProps) {
 	return {
-		event: state.events[ownProps.match.params.id]
+		event: state.events[ownProps.match.params.id],
+		user_events: state.user_events
 	};
 }
 

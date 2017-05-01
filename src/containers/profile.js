@@ -5,11 +5,6 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
 class UserProfile extends Component {
-	componentDidMount() {
-		const { id } = this.props.user;
-		this.props.fetchUserEvents(id);
-	}
-
 	renderUserInterests(interests) {
 		return interests.map((interest) => {
 			return(
@@ -18,17 +13,31 @@ class UserProfile extends Component {
 		});
 	}
 
-	renderUserEvents() {
+	renderUpcomingEvents() {
 		const { user_events } = this.props;
 		return _.map(user_events, (event) => {
-			return(
-				<Link to={"/events/" + event.event_id} key={event.event_id}>
-					<li>{event.event_name}</li>
-				</Link>
-			);
+			if (event.open) {
+				return(
+					<Link to={"/events/" + event.event_id} key={event.event_id}>
+						<li>{event.event_name}</li>
+					</Link>
+				);
+			}
 		});
-
 	}
+
+	renderClosedEvents() {
+		const { user_events } = this.props;
+		return _.map(user_events, (event) => {
+			if (!event.open) {
+				return(
+					<Link to={"/events/" + event.event_id} key={event.event_id}>
+						<li>{event.event_name}</li>
+					</Link>
+				);
+			}
+		});
+	}	
 
 	render() {
 		const { user } = this.props;
@@ -48,12 +57,17 @@ class UserProfile extends Component {
 					</ul>
 				</div>
 				<div>
-					<h3>Registered Events</h3>
+					<h4>Upcoming Events</h4>
 					<ul>
-						{this.renderUserEvents()}
+						{this.renderUpcomingEvents()}	
 					</ul>
 				</div>
-				
+				<div>
+					<h4>Closed Events</h4>
+					<ul>
+						{this.renderClosedEvents()}	
+					</ul>
+				</div>
 			</div>
 		);
 	}
@@ -62,7 +76,7 @@ class UserProfile extends Component {
 function mapStateToProps(state) {
 	return {
 		user: state.user.user_info,
-		user_events: state.user_events,
+		user_events: state.user_events
 	};
 }
 

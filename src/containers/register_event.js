@@ -28,7 +28,7 @@ class RegisterEvent extends Component {
   handleFormSubmit(formProps) {
   	formProps.eventId = this.props.match.params.id;
   	this.props.registerEvent(formProps, () => {
-  		this.props.history.push('/profile');
+  		this.props.history.push('/');
   	});
   }
 

@@ -10,15 +10,17 @@ class WelcomePage extends Component {
 	}
 	renderEvents(){
 		return _.map(this.props.events, (event) => {
-			return(
-				<Link to={"/events/" + event.id} key={event.id}>
-				<div className="card card-block">
-					<h4 className="card-title">{event.name}</h4>
-					<p className="card-text">{event.date}</p>
-					<p>{event.venue}</p>
-				</div>
-				</Link>
-			);
+			if (event.open) {
+				return(
+					<Link to={"/events/" + event.id} key={event.id}>
+					<div className="card card-block">
+						<h4 className="card-title">{event.name}</h4>
+						<p className="card-text">{event.formattedDate}</p>
+						<p>{event.venue}</p>
+					</div>
+					</Link>
+				);
+			}
 		});
 	}
 	render() {
