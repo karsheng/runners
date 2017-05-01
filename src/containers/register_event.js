@@ -26,9 +26,9 @@ class RegisterEvent extends Component {
   }
 
   handleFormSubmit(formProps) {
-  	formProps.eventId = this.props.match.params.id; 
+  	formProps.eventId = this.props.match.params.id;
   	this.props.registerEvent(formProps, () => {
-  		this.props.history.push('/');
+  		this.props.history.push('/profile');
   	});
   }
 
@@ -38,7 +38,7 @@ class RegisterEvent extends Component {
 	}	
 
 	render() {
-		const { event, handleSubmit } = this.props;
+		const { event, user, handleSubmit } = this.props;
 
 		if (!event) {
 			return(
@@ -147,7 +147,8 @@ function validate(formProps) {
 function mapStateToProps(state, ownProps) {
 	return { 
 		event: state.events[ownProps.match.params.id],
-		user_events: state.user_events
+		user_events: state.user_events,
+		user: state.user.user_info
 	};
 }
 

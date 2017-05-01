@@ -11,7 +11,13 @@ class EventShow extends Component {
 	}
 	render() {
 		const { event } = this.props;
-
+		if (!event) {
+			return(
+				<div>
+					Loading...
+				</div>
+			);
+		}
 		return (
 			<div>
 				<p>{event.name}</p>

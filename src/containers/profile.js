@@ -23,7 +23,7 @@ class UserProfile extends Component {
 		return _.map(user_events, (event) => {
 			return(
 				<Link to={"/events/" + event.event_id} key={event.event_id}>
-					<li >{event.event_name}</li>
+					<li>{event.event_name}</li>
 				</Link>
 			);
 		});
