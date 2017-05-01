@@ -3,10 +3,14 @@ import {
 	AUTH_USER,
 	UNAUTH_USER,
 	AUTH_ERROR,
-	FETCH_MESSAGE
+	FETCH_MESSAGE,
+	FETCH_USER_INFO
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090'; 
+
+// TO DELETE - mimic fetch user info from database
+import { userInfo } from '../index';
 
 export function signinUser({ email, password }, cb) {
 	// how we get access to the dispatch function
@@ -17,6 +21,13 @@ export function signinUser({ email, password }, cb) {
 				// if request is good
 				// - update state to indicate user is authenticated
 				dispatch({ type: AUTH_USER });
+
+				// update state with user info from database
+				dispatch({
+					type: FETCH_USER_INFO,
+					payload: userInfo
+				});
+
 				// - save the JWT token to localStorage
 				localStorage.setItem('token', response.data.token);
 

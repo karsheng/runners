@@ -6,11 +6,14 @@ class Header extends Component {
 	renderLinks() {
 		if (this.props.authenticated) {
 			// show a link to log out
-			return(
-				<li className="nav-item">
+			return([
+				<li className="nav-item" key={1}>
+					<Link className="nav-link" to="/profile">Profile</Link>
+				</li>,
+				<li className="nav-item" key={2}>
 					<Link className="nav-link" to="/signout">Sign Out</Link>
 				</li>
-			);
+			]);
 		} else {
 			// show a link to sign in or sign up
 			// return with [] allows you to not use div to wrap

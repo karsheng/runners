@@ -10,6 +10,7 @@ import RequireAuth from './containers/auth/require_auth';
 import WelcomePage from './containers/welcome';
 import EventShow from './containers/event_show';
 import RegisterEvent from './containers/register_event';
+import UserProfile from './containers/profile';
 
 
 export default class App extends Component {
@@ -24,6 +25,7 @@ export default class App extends Component {
 					<Route path="/signout" component={Signout} />
 					<Route path="/signup" component={Signup} />
 			    <Route path="/feature" component={RequireAuth(Feature)} />
+			    <Route path="/profile" component={RequireAuth(UserProfile)} />
 			    <Route path="/" component={WelcomePage} />					
 				</Switch>				
 			</div>
