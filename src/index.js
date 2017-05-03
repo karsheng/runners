@@ -8,6 +8,7 @@ import reducers from './reducers';
 import App from './app';
 import { AUTH_USER, FETCH_USER_INFO, FETCH_USER_EVENTS } from './actions/types';
 import _ from 'lodash';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -54,7 +55,9 @@ if (token) {
 ReactDOM.render(
   <Provider store={store}>
   	<BrowserRouter>
-  		<App />
+      <MuiThemeProvider>
+  		  <App />
+      </MuiThemeProvider>
   	</BrowserRouter>
   </Provider>
   , document.querySelector('.container'));
