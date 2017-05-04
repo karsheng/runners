@@ -18,16 +18,18 @@ export default class App extends Component {
 		return(
 			<div>
 				<Header />
-				<Switch>
-					<Route path="/reg-event/:id" component={RegisterEvent} />
-					<Route path="/events/:id" component={EventShow} />
-					<Route path="/signin" component={Signin} />
-					<Route path="/signout" component={Signout} />
-					<Route path="/signup" component={Signup} />
-			    <Route path="/feature" component={RequireAuth(Feature)} />
-			    <Route path="/profile" component={RequireAuth(UserProfile)} />
-			    <Route path="/" component={WelcomePage} />					
-				</Switch>				
+				<div className="inner-container">
+					<Switch>
+						<Route path="/reg-event/:id" component={RegisterEvent} />
+						<Route path="/events/:id" component={EventShow} />
+						<Route path="/signin" component={Signin} />
+						<Route path="/signout" component={Signout} />
+						<Route path="/signup" component={Signup} />
+				    <Route path="/feature" component={RequireAuth(Feature)} />
+				    <Route path="/profile" component={RequireAuth(UserProfile)} />
+				    <Route path="/" component={WelcomePage} />					
+					</Switch>				
+				</div>
 			</div>
 		);
 	}

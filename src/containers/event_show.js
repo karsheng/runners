@@ -6,44 +6,83 @@ import CircularProgress from 'material-ui/CircularProgress';
 import ReactSVG from 'react-svg';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 class EventShow extends Component {
-	renderRegisterButton() {
-		const { event, user_events } = this.props;
+	renderRegisterButton(event, user_events) {
 		if (event.open && !user_events[event.id]) {
 			return(
-				<Link to={"/reg-event/" + event.id}>
-					<button className="btn btn-primary">Register</button>
-				</Link>
+				<FlatButton primary={true} containerElement={<Link to={"/reg-event/" + event.id} />} >Register</FlatButton>
+			);
+		} else {
+			return(
+				<FlatButton primary={true} disabled={true}>Registered</FlatButton>
 			);
 		}
 	}
+	renderAirbnbButton(venue) {
+		return(
+			<IconButton
+				style={{padding: 0}}
+				iconStyle={{width: 36, height: 36}}
+				href={"https://airbnb.com/s/" + venue}
+				target="_blank"
+			>
+				<ReactSVG 
+					path="/src/svg/airbnb.svg"
+				/>
+			</IconButton>
+		)
+	}
+	renderBookingButton(venue) {
+		return(
+			<IconButton
+				style={{padding: 0}}
+				iconStyle={{width: 60, height: 36}}
+				href={"https://www.booking.com/search.html?ss=" + venue}
+				target="_blank"
+			>
+				<ReactSVG 
+					path="/src/svg/booking.svg"
+				/>
+			</IconButton>
+		)	
+	}
+
 	componentDidMount() {
     const { id } = this.props.match.params;
 		this.props.fetchEvent(id);
 	}
 	render() {
-		const { event } = this.props;
+		const { event, user_events } = this.props;
 		if (!event) {
 			return(
 				<CircularProgress />
 			);
 		}
 		return (
-			<div>
-				<p>{event.name}</p>
-				<p>{event.description}</p>
-				{this.renderRegisterButton()}
-		    <IconButton 
-		    	iconStyle={{width: 36, height: 36}}
-		    	href="https://airbnb.com/s/kuala-lumpur"
-      		target="_blank"
-		    >
-		    	<ReactSVG 
-						path="/src/svg/airbnb.svg"
-					/>
-		    </IconButton>				
-			</div>
+			<Card>
+				<CardHeader 
+					title={event.name}
+					subtitle={event.formattedDate}
+				/>
+				<CardMedia>
+					<img src="http://placehold.it/1000x500" alt=""/>
+				</CardMedia>
+				<CardTitle title={event.name} subtitle={event.formattedDate} />
+				<CardText>
+					{event.description}
+				</CardText>
+				<CardActions>
+					{this.renderRegisterButton(event, user_events)}	
+					{this.renderAirbnbButton(event.venue)}	
+					{this.renderBookingButton(event.venue)}
+				</CardActions>
+				<CardMedia>
+					<img src="http://placehold.it/1000x500" alt=""/>
+				</CardMedia>
+			</Card>
 		);
 	}
 }

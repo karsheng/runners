@@ -16,7 +16,7 @@ const styles = {
   gridList: {
     display: 'flex',
     flexWrap: 'nowrap',
-    overflowX: 'auto'
+    overflowX: 'auto',
   },
   titleStyle: {
     color: 'rgb(0, 188, 212)',
@@ -30,7 +30,8 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 100
+  autoplaySpeed: 100,
+  arrows: false
 };
 
 class WelcomePage extends Component {
@@ -43,16 +44,13 @@ class WelcomePage extends Component {
 				return(
 					<GridTile
 						key={event.id}
-						title={event.name}
 						titleStyle={styles.titleStyle}
-						titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+						containerElement={<Link to={"/events/" + event.id}></Link>}
 					>
 						<img src="http://placehold.it/220x300" alt=""/>
-						<Link to={"/events/" + event.id}>
 							<p>{event.name}</p>
 							<p>{event.formattedDate}</p>
 							<p>{event.venue}</p>
-						</Link>
 					</GridTile>
 				);				
 			}
@@ -63,20 +61,18 @@ class WelcomePage extends Component {
 	render() {
 		return(
 			<div>
-			<Slider {...settings}>
-        <div><img src="http://placehold.it/1000x500" alt=""/></div>
-        <div><img src="http://placehold.it/1000x500" alt=""/></div>
-        <div><img src="http://placehold.it/1000x500" alt=""/></div>
-        <div><img src="http://placehold.it/1000x500" alt=""/></div>
-        <div><img src="http://placehold.it/1000x500" alt=""/></div>
-        <div><img src="http://placehold.it/1000x500" alt=""/></div>
-      </Slider>	
+				<Slider {...settings}>
+	        <div className="main-slider"><img src="http://placehold.it/1080x500" alt=""/></div>
+	        <div className="main-slider"><img src="http://placehold.it/1080x500" alt=""/></div>
+	        <div className="main-slider"><img src="http://placehold.it/1080x500" alt=""/></div>
+	        <div className="main-slider"><img src="http://placehold.it/1080x500" alt=""/></div>
+	      </Slider>	
 			<Divider />
 			<br/>
 			<br/>
-				<h2>Event</h2>
+				<h2>Events</h2>
 				<div style={styles.root}>
-					<GridList style={styles.gridList} cols={2.2} cellHeight="auto">
+					<GridList style={styles.gridList} cols={1.1} cellHeight="auto">
 					{this.renderEvents()}
 					</GridList>	
 				</div>

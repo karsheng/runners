@@ -3,12 +3,25 @@ import { connect } from 'react-redux';
 import { fetchUserEvents } from '../actions/user';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
+import Paper from 'material-ui/Paper';
+import Avatar from 'material-ui/Avatar';
+import Chip from 'material-ui/Chip';
+
+
+
+const style = {
+  height: '100%',
+  width: '100%',
+  margin: '0 auto',
+  textAlign: 'center',
+  display: 'inline-block',
+};
 
 class UserProfile extends Component {
 	renderUserInterests(interests) {
 		return interests.map((interest) => {
 			return(
-				<li key={interest}>{interest}</li>
+				<Chip style={{margin: '4px auto'}} key={interest}>{interest}</Chip>
 			);
 		});
 	}
@@ -43,19 +56,26 @@ class UserProfile extends Component {
 		const { user } = this.props;
 		return(
 			<div>
-				<div>
-					<img className="img-circle" src="https://scontent-kut2-1.cdninstagram.com/t51.2885-19/s150x150/15275658_1838002483152296_2565393088411336704_a.jpg" />
-					<h3>User Info</h3>
-					<p>{user.firstName + " " + user.lastName}</p>
+				<h2>Profile</h2>
+    		<Paper style={style} zDepth={5} >
+    			<br/>
+        	<Avatar
+          	src="https://scontent-kut2-1.cdninstagram.com/t51.2885-19/s150x150/15275658_1838002483152296_2565393088411336704_a.jpg"
+          	size={150}
+          	style={{margin: 5}}
+        	/>
+					<h3>{user.firstName + " " + user.lastName}</h3>
+					<br/>
 					<h4>Address</h4>
 					<p>{user.address1}</p>
 					<p>{user.address2}</p>
 					<p>{user.address3}</p>
+					<br/>
 					<h4>Interest</h4>
-					<ul>
-						{this.renderUserInterests(user.interests)}
-					</ul>
-				</div>
+					{this.renderUserInterests(user.interests)}
+					<br/>
+					<br/>
+    		</Paper>
 				<div>
 					<h4>Upcoming Events</h4>
 					<ul>
@@ -67,7 +87,7 @@ class UserProfile extends Component {
 					<ul>
 						{this.renderClosedEvents()}	
 					</ul>
-				</div>
+				</div>    		
 			</div>
 		);
 	}
