@@ -8,6 +8,8 @@ import TextField from 'material-ui/TextField';
 class Signin extends Component {
 
 	renderField(field) {
+		const { meta: { touched, error } } = field;
+
 		return(
 			<TextField hintText={field.label}
 		    floatingLabelText={field.label}
