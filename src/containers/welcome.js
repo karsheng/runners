@@ -15,7 +15,7 @@ const styles = {
   gridList: {
     display: 'flex',
     flexWrap: 'nowrap',
-    overflowX: 'auto',
+    overflowX: 'auto'
   },
   titleStyle: {
     color: 'rgb(0, 188, 212)',
@@ -36,9 +36,10 @@ class WelcomePage extends Component {
 						titleStyle={styles.titleStyle}
 						titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
 					>
+						<img src="http://placehold.it/220x300" alt=""/>
 						<Link to={"/events/" + event.id}>
 							<p>{event.name}</p>
-							<p>{event.date}</p>
+							<p>{event.formattedDate}</p>
 							<p>{event.venue}</p>
 						</Link>
 					</GridTile>
@@ -51,7 +52,7 @@ class WelcomePage extends Component {
 	render() {
 		return(
 			<div style={styles.root}>
-				<GridList style={styles.gridList} cols={2.2}>
+				<GridList style={styles.gridList} cols={2.2} cellHeight="auto">
 				{this.renderEvents()}
 				</GridList>	
 			</div>

@@ -9,6 +9,9 @@ import App from './app';
 import { AUTH_USER, FETCH_USER_INFO, FETCH_USER_EVENTS } from './actions/types';
 import _ from 'lodash';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);

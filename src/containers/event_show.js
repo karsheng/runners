@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/events';
 import { Link } from 'react-router-dom';
-
+import CircularProgress from 'material-ui/CircularProgress';
+import ReactSVG from 'react-svg';
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
 
 class EventShow extends Component {
 	renderRegisterButton() {
@@ -23,9 +26,7 @@ class EventShow extends Component {
 		const { event } = this.props;
 		if (!event) {
 			return(
-				<div>
-					Loading...
-				</div>
+				<CircularProgress />
 			);
 		}
 		return (
@@ -33,6 +34,16 @@ class EventShow extends Component {
 				<p>{event.name}</p>
 				<p>{event.description}</p>
 				{this.renderRegisterButton()}
+		    <IconButton 
+		    	iconStyle={{width: 36, height: 36}}
+		    	href="https://airbnb.com/s/kuala-lumpur"
+      		target="_blank"
+      		secondary={true}
+		    >
+		    	<ReactSVG 
+						path="/src/svg/airbnb.svg"
+					/>
+		    </IconButton>				
 			</div>
 		);
 	}

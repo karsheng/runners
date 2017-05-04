@@ -1,44 +1,53 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import { withRouter } from 'react-router-dom';
+
+
 
 class Header extends Component {
-	renderLinks() {
-		if (this.props.authenticated) {
-			// show a link to log out
-			return([
-				<li className="nav-item" key={1}>
-					<Link className="nav-link" to="/profile">Profile</Link>
-				</li>,
-				<li className="nav-item" key={2}>
-					<Link className="nav-link" to="/signout">Sign Out</Link>
-				</li>
-			]);
-		} else {
-			// show a link to sign in or sign up
-			// return with [] allows you to not use div to wrap
-			// multiple elements
-			return([
-				<li className="nav-item" key={1}>
-					<Link className="nav-link" to="/signin">Sign In</Link>
-				</li>,
-				<li className="nav-item" key={2}>
-					<Link className="nav-link" to="/signup">Sign Up</Link>
-				</li>
-			]); 
-		}
-
+	constructor(props) {
+		super(props);
+		this.state = { open: false };
 	}
+
+	handleToggle = () => this.setState({open: !this.state.open});
+  handleClose = () => this.setState({open: false});
+
+  renderMenuItems () {
+  	if (this.props.authenticated) {
+  		return([
+				<MenuItem key={2} containerElement={<Link to="/profile" />}>Profile</MenuItem>,
+				<MenuItem key={3} containerElement={<Link to="/signout" />}>Sign Out</MenuItem>
+			]);
+  	} else {
+			return([
+				<MenuItem key={2} containerElement={<Link to="/signin" />}>Sign In</MenuItem>,
+				<MenuItem key={3} containerElement={<Link to="/signup" />}>Sign Up</MenuItem>
+			]);  		
+  	}
+  }
+
 	render() {
 		return (
-			<nav className="navbar navbar-light">
-				<Link to="/" className="navbar-brand">
-				Runners App
-				</Link>
-				<ul className="nav navbar-nav">
-					{this.renderLinks()}
-				</ul>
-			</nav>
+			<div>
+			<AppBar 
+				title="Runners App"
+				onLeftIconButtonTouchTap={this.handleToggle}
+			/>
+      <Drawer
+        docked={false}
+        width={200}
+        open={this.state.open}
+        onRequestChange={(open) => this.setState({open})}
+      >
+				<MenuItem key={1} containerElement={<Link to="/" />}>Home</MenuItem>
+				{this.renderMenuItems()}
+      </Drawer>			
+			</div>
 		);
 	}
 }
@@ -47,4 +56,4 @@ function mapStateToProps(state) {
 	return { authenticated: state.auth.authenticated };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withRouter(Header));
