@@ -4,7 +4,8 @@ import * as actions from '../actions/events';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { GridList, GridTile } from 'material-ui/GridList';
-
+import Slider from 'react-slick';
+import Divider from 'material-ui/Divider';
 
 const styles = {
   root: {
@@ -20,6 +21,16 @@ const styles = {
   titleStyle: {
     color: 'rgb(0, 188, 212)',
   },
+};
+
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 100
 };
 
 class WelcomePage extends Component {
@@ -51,10 +62,24 @@ class WelcomePage extends Component {
 	}
 	render() {
 		return(
-			<div style={styles.root}>
-				<GridList style={styles.gridList} cols={2.2} cellHeight="auto">
-				{this.renderEvents()}
-				</GridList>	
+			<div>
+			<Slider {...settings}>
+        <div><img src="http://placehold.it/1000x500" alt=""/></div>
+        <div><img src="http://placehold.it/1000x500" alt=""/></div>
+        <div><img src="http://placehold.it/1000x500" alt=""/></div>
+        <div><img src="http://placehold.it/1000x500" alt=""/></div>
+        <div><img src="http://placehold.it/1000x500" alt=""/></div>
+        <div><img src="http://placehold.it/1000x500" alt=""/></div>
+      </Slider>	
+			<Divider />
+			<br/>
+			<br/>
+				<h2>Event</h2>
+				<div style={styles.root}>
+					<GridList style={styles.gridList} cols={2.2} cellHeight="auto">
+					{this.renderEvents()}
+					</GridList>	
+				</div>
 			</div>
 		);
 	}
