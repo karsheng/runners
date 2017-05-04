@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import * as actions from '../../actions'; 
 import { connect } from 'react-redux';
+import TextField from 'material-ui/TextField';
+
 
 class Signin extends Component {
+
 	renderField(field) {
 		return(
-			<div className="form-group">
-				<label>{field.label}</label>
-				<input
-					className="form-control"
-					type={field.type}
-					{...field.input}
-				/>
-			</div>
+			<TextField hintText={field.label}
+		    floatingLabelText={field.label}
+		    type={field.type}
+		    errorText={touched && error}
+		    {...field.input}
+		  />			
 		);
 	}
 
@@ -36,7 +37,7 @@ class Signin extends Component {
 	}
 
 	render() {
-		const { handleSubmit } = this.props;
+		const { handleSubmit, pristine, reset, submitting} = this.props;
 
 		return(
 			<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
@@ -46,14 +47,16 @@ class Signin extends Component {
 					type="text"
 					component={this.renderField}
 				/>
+				<br/>
 				<Field
 					label="Password"
 					name="password"
 					type="password"
 					component={this.renderField}
 				/>
+				<br/>
 				{this.renderAlert()}
-				<button action="submit" className="btn btn-primary">Sign in</button>
+				<button action="submit" disabled={pristine || submitting} >Sign in</button>
 			</form>
 		);
 	}

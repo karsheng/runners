@@ -3,25 +3,20 @@ import { Field, reduxForm } from 'redux-form';
 import { fetchEvent } from '../actions/events';
 import { registerEvent } from '../actions/user'; 
 import { connect } from 'react-redux';
+import TextField from 'material-ui/TextField'
 
 
 class RegisterEvent extends Component {
   renderField(field) {
     const { meta: { touched, error } } = field;
-    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
     
     return(
-      <div className={className}>
-        <label>{field.label}</label>
-        <input
-          className="form-control"
-          type={field.type}
-          {...field.input}
-        />
-        <div className="text-help">
-          {touched ? error : ''}
-        </div>
-      </div>
+			<TextField hintText={field.label}
+		    floatingLabelText={field.label}
+		    type={field.type}
+		    errorText={touched && error}
+		    {...field.input}
+		  />
     );    
   }
 
@@ -55,54 +50,63 @@ class RegisterEvent extends Component {
 					type="text"
 					component={this.renderField}
 				/>
+				<br/>
 				<Field 
 					label="Last Name"
 					name="lastName"
 					type="text"
 					component={this.renderField}
 				/>
+				<br/>
 				<Field 
 					label="Email"
 					name="email"
 					type="text"
 					component={this.renderField}
 				/>
+				<br/>
 				<Field 
 					label="Address Line 1:"
 					name="address1"
 					type="text"
 					component={this.renderField}
 				/>
+				<br/>
 				<Field 
 					label="Address Line 2:"
 					name="address2"
 					type="text"
 					component={this.renderField}
 				/>
+				<br/>
 				<Field 
 					label="Address Line 3:"
 					name="address3"
 					type="text"
 					component={this.renderField}
 				/>
+				<br/>
 				<Field 
 					label="Postcode:"
 					name="postcode"
 					type="text"
 					component={this.renderField}
 				/>
+				<br/>
 				<Field 
 					label="Category:"
 					name="category"
 					type="text"
 					component={this.renderField}
 				/>
+				<br/>
 				<Field 
 					label="Phone Number:"
 					name="phone"
 					type="text"
 					component={this.renderField}
 				/>
+				<br/>
 				<button type="submit" className="btn btn-success">Proceed to Payment</button>
       </form>
 		);

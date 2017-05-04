@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import { withRouter } from 'react-router-dom';
 
 
 
@@ -56,4 +55,4 @@ function mapStateToProps(state) {
 	return { authenticated: state.auth.authenticated };
 }
 
-export default connect(mapStateToProps)(withRouter(Header));
+export default connect(mapStateToProps)(Header);

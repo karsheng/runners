@@ -38,7 +38,6 @@ class EventShow extends Component {
 		    	iconStyle={{width: 36, height: 36}}
 		    	href="https://airbnb.com/s/kuala-lumpur"
       		target="_blank"
-      		secondary={true}
 		    >
 		    	<ReactSVG 
 						path="/src/svg/airbnb.svg"

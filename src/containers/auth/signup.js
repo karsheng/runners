@@ -2,24 +2,19 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
+import TextField from 'material-ui/TextField';
 
 class Signup extends Component {
   renderField(field) {
     const { meta: { touched, error } } = field;
-    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
     
     return(
-      <div className={className}>
-        <label>{field.label}</label>
-        <input
-          className="form-control"
-          type={field.type}
-          {...field.input}
-        />
-        <div className="text-help">
-          {touched ? error : ''}
-        </div>
-      </div>
+      <TextField hintText={field.label}
+        floatingLabelText={field.label}
+        errorText={field.touched && field.error}
+        type={field.type}
+        {...field.input}
+      />
     );    
   }
 
@@ -41,7 +36,7 @@ class Signup extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, pristine, reset, submitting} = this.props;
     // javascript triocl
     // if (x && y && z) === true return z
     return (
@@ -65,7 +60,7 @@ class Signup extends Component {
           component={this.renderField}
         />
         {this.renderAlert()}
-        <button action="submit" className="btn btn-primary">Sign up!</button>
+        <button action="submit" disabled={pristine || submitting}>Sign up!</button>
       </form>
     );
   }
