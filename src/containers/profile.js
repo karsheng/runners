@@ -6,7 +6,7 @@ import _ from 'lodash';
 import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
-
+import { Tabs, Tab } from 'material-ui/Tabs';
 
 
 const style = {
@@ -15,6 +15,16 @@ const style = {
   margin: '0 auto',
   textAlign: 'center',
   display: 'inline-block',
+};
+
+
+const tabStyles = {
+  headline: {
+    fontSize: 24,
+    paddingTop: 16,
+    marginBottom: 12,
+    fontWeight: 400,
+  },
 };
 
 class UserProfile extends Component {
@@ -76,18 +86,25 @@ class UserProfile extends Component {
 					<br/>
 					<br/>
     		</Paper>
-				<div>
-					<h4>Upcoming Events</h4>
-					<ul>
-						{this.renderUpcomingEvents()}	
-					</ul>
-				</div>
-				<div>
-					<h4>Closed Events</h4>
-					<ul>
-						{this.renderClosedEvents()}	
-					</ul>
-				</div>    		
+    		<br/>
+    		<br/>
+    		<h2>Events Joined</h2>
+    		<Tabs>
+    			<Tab label="Upcoming Events">
+						<ul>
+							{this.renderUpcomingEvents()}	
+						</ul>    				
+    			</Tab>
+    			<Tab label="Closed Events">
+    				<ul>
+							{this.renderClosedEvents()}	
+						</ul>
+    			</Tab>
+    		</Tabs>
+    		<br/>
+    		<br/>
+    		<br/>
+
 			</div>
 		);
 	}

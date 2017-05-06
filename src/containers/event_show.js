@@ -65,12 +65,12 @@ class EventShow extends Component {
 			<Card>
 				<CardHeader 
 					title={event.name}
-					subtitle={event.formattedDate}
+					subtitle={event.venue + '  |  ' + event.formattedDate}
 				/>
 				<CardMedia>
-					<img src="http://placehold.it/1000x500" alt=""/>
+					<img src={event.main_img} alt=""/>
 				</CardMedia>
-				<CardTitle title={event.name} subtitle={event.formattedDate} />
+				<CardTitle title={event.name} subtitle={event.venue + '  |  ' + event.formattedDate} />
 				<CardText>
 					{event.description}
 				</CardText>

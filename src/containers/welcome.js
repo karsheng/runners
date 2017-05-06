@@ -47,7 +47,7 @@ class WelcomePage extends Component {
 						titleStyle={styles.titleStyle}
 						containerElement={<Link to={"/events/" + event.id}></Link>}
 					>
-						<img src={event.img} alt=""/>
+						<img src={event.poster_small} alt=""/>
 							<p>{event.name}</p>
 							<p>{event.formattedDate}</p>
 							<p>{event.venue}</p>
