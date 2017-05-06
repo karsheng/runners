@@ -8,6 +8,8 @@ import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import GoogleMap from '../components/google_map';
+
 
 class EventShow extends Component {
 	renderRegisterButton(event, user_events) {
@@ -80,7 +82,7 @@ class EventShow extends Component {
 					{this.renderBookingButton(event.venue)}
 				</CardActions>
 				<CardMedia>
-					<img src="http://placehold.it/1000x500" alt=""/>
+					<GoogleMap lat={event.lat} lng={event.lng} />
 				</CardMedia>
 			</Card>
 		);
