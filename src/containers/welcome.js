@@ -30,7 +30,7 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 100,
+  autoplaySpeed: 3000,
   arrows: false
 };
 
@@ -47,7 +47,7 @@ class WelcomePage extends Component {
 						titleStyle={styles.titleStyle}
 						containerElement={<Link to={"/events/" + event.id}></Link>}
 					>
-						<img src="http://placehold.it/220x300" alt=""/>
+						<img src={event.img} alt=""/>
 							<p>{event.name}</p>
 							<p>{event.formattedDate}</p>
 							<p>{event.venue}</p>
@@ -62,12 +62,11 @@ class WelcomePage extends Component {
 		return(
 			<div>
 				<Slider {...settings}>
-	        <div className="main-slider"><img src="http://placehold.it/1080x500" alt=""/></div>
-	        <div className="main-slider"><img src="http://placehold.it/1080x500" alt=""/></div>
-	        <div className="main-slider"><img src="http://placehold.it/1080x500" alt=""/></div>
-	        <div className="main-slider"><img src="http://placehold.it/1080x500" alt=""/></div>
+	        <div className="main-slider"><img src="http://www.buttonbox.ie/images/media/800/166.jpg" alt=""/></div>
+	        <div className="main-slider"><img src="http://www.tetonparksandrec.org/images/uploads/bucket/Hillclimb_square_logo_white.jpg" alt=""/></div>
+	        <div className="main-slider"><img src="https://www.runsociety.com/wp-content/themes/runsociety-4/images/default-event.jpg?x93482" alt=""/></div>
+	        <div className="main-slider"><img src="https://event.howei.com/sites/default/files/events/2016/SPHalf2016/sp-half-banner.jpg" alt=""/></div>
 	      </Slider>	
-			<Divider />
 			<br/>
 			<br/>
 				<h2>Events</h2>
