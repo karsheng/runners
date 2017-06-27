@@ -3,8 +3,8 @@ import { Field, reduxForm } from 'redux-form';
 import { fetchEvent } from '../actions/events';
 import { registerEvent } from '../actions/user'; 
 import { connect } from 'react-redux';
-import TextField from 'material-ui/TextField'
-
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class RegisterEvent extends Component {
   renderField(field) {
@@ -33,7 +33,7 @@ class RegisterEvent extends Component {
 	}	
 
 	render() {
-		const { event, user, handleSubmit } = this.props;
+		const { event, user, handleSubmit, pristine, reset, submitting } = this.props;
 
 		if (!event) {
 			return(
@@ -50,7 +50,6 @@ class RegisterEvent extends Component {
 					type="text"
 					component={this.renderField}
 				/>
-				<br/>
 				<Field 
 					label="Last Name"
 					name="lastName"
@@ -107,7 +106,9 @@ class RegisterEvent extends Component {
 					component={this.renderField}
 				/>
 				<br/>
-				<button type="submit" className="btn btn-success">Proceed to Payment</button>
+				<br/>
+				<br/>
+				<RaisedButton type="submit" label="Proceed to Payment" className="button-submit" disabled={pristine || submitting} secondary={true}></RaisedButton>
       </form>
 		);
 	}

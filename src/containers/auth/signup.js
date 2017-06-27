@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class Signup extends Component {
   renderField(field) {
@@ -41,26 +42,32 @@ class Signup extends Component {
     // if (x && y && z) === true return z
     return (
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+        <h2>Sign Up</h2>
         <Field 
           label="Email:"
           type="text"
           name="email"
           component={this.renderField}
         />
+        <br/>
         <Field 
           label="Password:"
           type="password"
           name="password"
           component={this.renderField}
         />
+        <br/>
         <Field 
           label="Confirm Password:"
           type="password"
           name="passwordConfirm"
           component={this.renderField}
         />
+        <br/>
         {this.renderAlert()}
-        <button action="submit" disabled={pristine || submitting}>Sign up!</button>
+        <br/>
+        <br/>
+        <RaisedButton type="submit" label="Sign Up" className="button-submit" disabled={pristine || submitting} primary={true}></RaisedButton>
       </form>
     );
   }

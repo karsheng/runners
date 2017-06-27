@@ -28,3 +28,9 @@ html {
   max-height: 500px;
   margin: 0 auto;
 }
+
+.welcome-event-text {
+  text-decoration: none;
+  text-align: center;
+  color: #212121; 
+}

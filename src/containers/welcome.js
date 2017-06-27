@@ -45,7 +45,7 @@ class WelcomePage extends Component {
 					<GridTile
 						key={event.id}
 						titleStyle={styles.titleStyle}
-						containerElement={<Link to={"/events/" + event.id}></Link>}
+						containerElement={<Link className="welcome-event-text" to={"/events/" + event.id}></Link>}
 					>
 						<img src={event.poster_small} alt=""/>
 							<p>{event.name}</p>

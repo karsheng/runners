@@ -7,6 +7,7 @@ import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import { Tabs, Tab } from 'material-ui/Tabs';
+import {List, ListItem} from 'material-ui/List';
 
 
 const style = {
@@ -41,9 +42,11 @@ class UserProfile extends Component {
 		return _.map(user_events, (event) => {
 			if (event.open) {
 				return(
-					<Link to={"/events/" + event.event_id} key={event.event_id}>
-						<li>{event.event_name}</li>
-					</Link>
+      		<ListItem 
+      			primaryText={event.event_name} 
+      			containerElement={<Link to={"/events/" + event.event_id} />} 
+      			key={event.event_id}
+      		/>
 				);
 			}
 		});
@@ -54,9 +57,11 @@ class UserProfile extends Component {
 		return _.map(user_events, (event) => {
 			if (!event.open) {
 				return(
-					<Link to={"/events/" + event.event_id} key={event.event_id}>
-						<li>{event.event_name}</li>
-					</Link>
+      		<ListItem 
+      			primaryText={event.event_name} 
+      			containerElement={<Link to={"/events/" + event.event_id} />} 
+      			key={event.event_id}
+      		/>
 				);
 			}
 		});
@@ -91,20 +96,25 @@ class UserProfile extends Component {
     		<h2>Events Joined</h2>
     		<Tabs>
     			<Tab label="Upcoming Events">
-						<ul>
-							{this.renderUpcomingEvents()}	
-						</ul>    				
+    				<Paper style={style}>
+							<List>
+								{this.renderUpcomingEvents()}	
+							</List>
+						</Paper>
     			</Tab>
     			<Tab label="Closed Events">
-    				<ul>
-							{this.renderClosedEvents()}	
-						</ul>
+    				<Paper style={style}>
+	    				<List>
+								{this.renderClosedEvents()}	
+							</List>
+						</Paper>
     			</Tab>
     		</Tabs>
     		<br/>
     		<br/>
     		<br/>
-
+    		<br/>
+    		<br/>
 			</div>
 		);
 	}

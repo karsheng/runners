@@ -65,10 +65,6 @@ class EventShow extends Component {
 		}
 		return (
 			<Card>
-				<CardHeader 
-					title={event.name}
-					subtitle={event.venue + '  |  ' + event.formattedDate}
-				/>
 				<CardMedia>
 					<img src={event.main_img} alt=""/>
 				</CardMedia>

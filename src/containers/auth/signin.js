@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import * as actions from '../../actions'; 
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 class Signin extends Component {
@@ -43,6 +44,7 @@ class Signin extends Component {
 
 		return(
 			<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+				<h2>Sign In</h2>
 				<Field
 					label="Email"
 					name="email"
@@ -58,7 +60,9 @@ class Signin extends Component {
 				/>
 				<br/>
 				{this.renderAlert()}
-				<button action="submit" disabled={pristine || submitting} >Sign in</button>
+				<br/>
+				<br/>
+				<RaisedButton type="submit" label="Login" className="button-submit" disabled={pristine || submitting} ></RaisedButton>
 			</form>
 		);
 	}
